@@ -1,7 +1,7 @@
 # ip-ssl-scan
 Scan ips ssl certificates and get their domains
 
- <b>This project uses Javaline and Apache Http Client</b></br>
+ <b>This project uses Javalin and Apache Http Client</b></br>
  This program get SSL certificates from ip range and find their domains.</br>
  Runs on :7000</br>
 
