@@ -8,14 +8,17 @@ import static io.javalin.rendering.template.TemplateUtil.model;
 public class Main {
     public static void main(String[] args) {
 
+        // start server and add css
         Javalin app = Javalin.create(config->{
             config.staticFiles.add("/static");
         }).start(7000);
 
+        // start page
         app.get("/", ctx -> {
             ctx.render("templates/template.html");
         });
 
+        // scan request
         app.post("/scan",ctx->{
             System.out.println("new request");
             String ip = ctx.formParam("ip");
