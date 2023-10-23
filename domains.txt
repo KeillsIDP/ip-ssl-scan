@@ -1,0 +1,2 @@
+*.contestugc.com
+contestugc.com

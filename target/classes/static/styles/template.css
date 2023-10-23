@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 1.2vw;
+    background-color: rgb(136, 136, 136);
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    gap: 1vh;
+    color: whitesmoke;
+}
+
+input{
+    font-size: 1.5vw;
+}

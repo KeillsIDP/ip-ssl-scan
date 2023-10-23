@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset='UTF-8'>
+    <link rel="stylesheet" type="text/css" th:href=@{/styles/template.css} href="../static/styles/template.css">
+    <title>IP scannner</title>
+</head>
+<body>
+    <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+    <form action="/scan" method="post" target="dummyframe">
+        <label>Введите IP адрес (в формате xxx.xxx.xxx.xxx/nn)</label>
+        <input type="text" id="ip" name="ip" pattern="\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\/\d{1,2}$" required>
+        <label>Введите количество используемых потоков</label>
+        <input type="number" id="threads" name="threads" required>
+        <input type="submit">
+    </form>
+</body>
+</html>
