@@ -20,6 +20,7 @@ public class ThreadedIpScan extends Thread{
     private final RequestConfig requestConfig;
     private final List<String> ips;
     private List<String> domains;
+    private int scansFinishedCount = 0;
 
     public ThreadedIpScan(CloseableHttpClient httpClient, RequestConfig requestConfig, List<String> ips){
         this.httpClient = httpClient;
@@ -32,6 +33,7 @@ public class ThreadedIpScan extends Thread{
         domains=new ArrayList<String>();
         // scan for every ip
         for (String ip : ips) {
+            scansFinishedCount++;
             try {
                 // creating request
                 InetAddress inetAddress = InetAddress.getByName(ip);
@@ -70,5 +72,9 @@ public class ThreadedIpScan extends Thread{
 
     public List<String> getDomains() {
         return domains;
+    }
+
+    public int getScansFinishedCount() {
+        return scansFinishedCount;
     }
 }
