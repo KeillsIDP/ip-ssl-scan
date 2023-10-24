@@ -14,8 +14,7 @@ import java.security.cert.Certificate;
 public class SSLResponseInterceptor implements HttpResponseInterceptor {
     private static final String PEER_CERTIFICATES = "PEER_CERTIFICATES";
     @Override
-    public void process(HttpResponse httpResponse, HttpContext httpContext) throws HttpException, IOException {
-
+    public void process(HttpResponse httpResponse, HttpContext httpContext) throws  IOException {
         ManagedHttpClientConnection routedConnection = (ManagedHttpClientConnection) httpContext.getAttribute(HttpCoreContext.HTTP_CONNECTION);
         SSLSession sslSession = routedConnection.getSSLSession();
         if (sslSession != null) {

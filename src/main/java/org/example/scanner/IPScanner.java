@@ -7,6 +7,7 @@ import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.ssl.SSLContexts;
 
 import java.io.FileWriter;
@@ -29,9 +30,14 @@ public class IPScanner {
                 NoopHostnameVerifier.INSTANCE);
 
         SSLResponseInterceptor interceptor = new SSLResponseInterceptor();
-
+        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
+        cm.setMaxTotal(100);
         // set time out here
-        this.requestConfig = RequestConfig.custom().setConnectTimeout(500).build();
+        this.requestConfig = RequestConfig.custom()
+                .setConnectTimeout(1000)
+                .setSocketTimeout(1000)
+                .setConnectionRequestTimeout(1000)
+                .build();
         this.httpClient = HttpClients.custom().addInterceptorFirst(interceptor).setSSLSocketFactory(scsf).build();
     }
 
@@ -46,6 +52,7 @@ public class IPScanner {
             return;
         }
         // creating list of threads
+        int overall = 0;
         List<ThreadedIpScan> threads = new ArrayList<ThreadedIpScan>();
         int n = ips.size()/threadsCount+1;
         for(int i = 0;i<threadsCount;i++){
@@ -60,7 +67,6 @@ public class IPScanner {
             if((i+1)*n >ips.size()-1)
                 break;
         }
-
         ScanProgressThread scanThread = new ScanProgressThread(threads,ips.size());
         scanThread.run();
     }

@@ -1,0 +1,10 @@
+*.contestugc.com
+contestugc.com
+updates.tdesktop.com
+www.updates.tdesktop.com
+*.telegram.org
+telegram.org
+*.contestugc.com
+contestugc.com
+*.telegram.org
+telegram.org

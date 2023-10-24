@@ -26,21 +26,15 @@ public class ScanProgressThread extends Thread{
 
         while (true) {
             finishedCount=0;
-            int deadThreads=0;
             for (ThreadedIpScan thread : threads) {
-                if (thread.isAlive())
-                    finishedCount += thread.getScansFinishedCount();
-                else
-                    deadThreads++;
+                finishedCount += thread.getScansFinishedCount();
             }
 
-            System.out.println("FINISHED "+ finishedCount);
-
-            if(isCompleted() || deadThreads==threads.size())
+            if(isCompleted())
                 break;
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
